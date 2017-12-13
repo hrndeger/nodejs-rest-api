@@ -31,56 +31,14 @@ app.get('/index', (req,res) => {
         res.render("index")
 });
 
+app.get('/upload', (req,res) => {
+    res.render("upload")
+});
+
 app.get('/api/media/:id', cacheManager.cache(100), (req, res) => {
        var id = req.params.id;
        sql.getMedia(res,id);
 });
-
-// app.post('/api/upload', (req, res) => {
-//     if(req.files){
-//         console.log(req.files);
-        
-//         var file = req.files.filename;
-//         var img = file.data;
-//         var mimeType = file.mimetype;
-    
-//         var sqlParams = [];
-    
-//         var widthParam =
-//             {
-//               name: "Width", type: 'int', value: 50  
-//             };
-//         var heightParam =
-//             {
-//              name: "Height", type: 'int', value: 150  
-//             };
-//         var sizeParam =
-//             {
-//               name: "Size", type: 'int', value: 250  
-//             };
-//         var mimeTypeParam =
-//             {
-//               name: "MimeType", type: 'NVarChar(150)', value: mimeType 
-//             };
-//         var createdByParam =
-//             {
-//               name: "CreatedBy", type: 'NVarChar(150)', value: 'hdeger' 
-//             };    
-//         var imgParam =
-//             {
-//               name: "BinaryContent", type: 'VarBinary(1000)', value: img 
-//             }
-
-//         sqlParams.push(widthParam);
-//         sqlParams.push(heightParam);
-//         sqlParams.push(sizeParam);
-//         sqlParams.push(mimeTypeParam);
-//         sqlParams.push(createdByParam);
-//         sqlParams.push(imgParam);
-
-//         sql.executeStoredProc('AddMedia', sqlParams);
-//     }
-// });
 
 app.post('/api/upload', (req, res) => {
     if(req.files){
